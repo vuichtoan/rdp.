@@ -1,0 +1,21 @@
+workflow_dispatch:
+
+jobs:
+  build:
+    name: Start Building...
+    runs-on: windows-latest
+
+    steps:
+      # Step 1: Download the necessary files from an external source
+      - name: Downloading & Installing Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://gitlab.com/chamod12/lm_win-10_github_rdp/-/raw/main/Downloads.bat" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
+
+      # Step 2: Run the script to initiate the LiteManager connection
+      - name: Connect to LiteManager
+        run: cmd /c show.bat
+
+      # Step 3: Run a loop to keep the workflow active
+      - name: Time Counter
+        run: cmd /c loop.bat
